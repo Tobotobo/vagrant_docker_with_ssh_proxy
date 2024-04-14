@@ -1,0 +1,18 @@
+services:
+  dev:
+    build: .
+    # ports:
+    #   - "2222:22"
+    volumes:
+      - home:/home
+      - vscode-server:/root/.vscode-server
+    restart: unless-stopped
+    privileged: true
+    labels:
+      sshpiper.container_username: "tobotobo"
+      sshpiper.username: "root"
+      sshpiper.port: "22"
+
+volumes:
+  home:
+  vscode-server:

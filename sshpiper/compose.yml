@@ -1,0 +1,12 @@
+services:
+  sshpiper:
+    image: farmer1992/sshpiperd:full-v1.2.8
+    # command: plugin/docker
+    environment:
+      PLUGIN: "docker"
+    ports:
+      - "2222:2222"
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    privileged: true
