@@ -9,8 +9,8 @@ services:
     restart: unless-stopped
     privileged: true
     labels:
-      sshpiper.container_username: "tobotobo"
-      sshpiper.username: "root"
+      sshpiper.username: "${SSH_PROXY_USERNAME}"
+      sshpiper.container_username: "dev"
       sshpiper.port: "22"
 
 volumes:

@@ -27,6 +27,9 @@ Vagrant.configure("2") do |config|
     addgroup vagrant docker
     rc-update add docker default
     service docker start
+
+    # IP アドレス確認
+    ip addr show eth1 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1
   SHELL
 
 end

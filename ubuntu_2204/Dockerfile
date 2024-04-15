@@ -6,9 +6,9 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Install SSH server
 RUN apt-get update && apt-get install -y openssh-server \
-    && mkdir /var/run/sshd \
-    && echo 'root:root' | chpasswd \
-    && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+    && mkdir /var/run/sshd
+    # && echo 'root:root' | chpasswd \
+    # && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 EXPOSE 22
 
 # Install Docker
@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y git
 
 # Add user dev
 RUN apt-get update && apt-get install -y sudo \
-    && useradd -m dev \
+    && useradd -s /bin/bash dev \
     && echo "dev:dev" | chpasswd \
     && adduser dev sudo \
     && usermod -aG docker dev

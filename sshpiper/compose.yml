@@ -1,12 +1,15 @@
 services:
   sshpiper:
     image: farmer1992/sshpiperd:full-v1.2.8
-    # command: plugin/docker
+    user: "0:0"
+    # entrypoint: '/sshpiperd/sshpiperd --log-level debug "/sshpiperd/plugins/docker"'
     environment:
       PLUGIN: "docker"
     ports:
       - "2222:2222"
     restart: unless-stopped
     volumes:
+      - /etc/ssh/ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key
       - /var/run/docker.sock:/var/run/docker.sock
-    privileged: true
+    # privileged: true
+    network_mode: host
