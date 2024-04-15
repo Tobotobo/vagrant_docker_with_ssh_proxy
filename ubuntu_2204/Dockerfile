@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y sudo \
     && useradd -s /bin/bash dev \
     && echo "dev:dev" | chpasswd \
     && adduser dev sudo \
+    && echo 'dev ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers \
     && usermod -aG docker dev
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
